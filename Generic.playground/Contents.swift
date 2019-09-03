@@ -14,6 +14,11 @@ extension Int{
     }
 }
 
+extension Double{
+    var isPalindrome: Bool{
+        return String(self).isPalindrome
+    }
+}
 
 /*:
  Test Suite
@@ -79,12 +84,16 @@ class TestSuite: XCTestCase{
         XCTAssertFalse(input.isPalindrome, "\(input) should not be a palindrome")
     }
     
-    func test_nonPalindrome_signedInt_fals() {
-        let input = +111
-        XCTAssertFalse(input.isPalindrome, "Signed input \(input) should not be a palindrome")
+    // MARK: - Double
+    func test_nonPalindrome_double_false() {
+        let input = 12.01
+        XCTAssertFalse(input.isPalindrome, "\(input) should not be a Palindrome Double")
     }
     
-    
+    func test_Palindrome_double_true() {
+        let input = 12.21
+        XCTAssertTrue(input.isPalindrome, "\(input) should be a Palindrome Double")
+    }
 }
 
 class TestObserver: NSObject, XCTestObservation {
