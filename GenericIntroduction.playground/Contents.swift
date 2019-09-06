@@ -20,6 +20,13 @@ extension Double{
     }
 }
 
+//extension ExpressibleByStringLiteral{
+//    var palindrome: Bool{
+//        return self == String(self.reversed())
+//    }
+//}
+
+
 /*:
  Test Suite
  */
@@ -40,7 +47,7 @@ class TestSuite: XCTestCase{
     
     func test_nonPalindrome_text_false() {
         let input = "This is a non-palindrome text"
-        XCTAssertFalse(input.isPalindrome, "Should have return flase for: \n \(input)")
+        XCTAssertFalse(input.isPalindrome, "Should have return false for: \n \(input)")
     }
     
     func test_palindrome_text_true() {
@@ -55,7 +62,7 @@ class TestSuite: XCTestCase{
     
     func test_nonPalindrome_mixCase_false() {
         let input = "Wow wow"
-        XCTAssertFalse(input.isPalindrome, "Should return false as ther is a capital W on the\n \(input)")
+        XCTAssertFalse(input.isPalindrome, "Should return false as there is a capital W on the\n \(input)")
     }
     
     func test_palindrome_mixCase_true() {
