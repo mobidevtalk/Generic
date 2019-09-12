@@ -20,12 +20,19 @@ extension Double{
     }
 }
 
-//extension ExpressibleByStringLiteral{
+// MARK: - Generic Function
+func palindrome<T: LosslessStringConvertible>(input: T) -> Bool{
+    let stringFormatted = String(input)
+    return stringFormatted == String(stringFormatted.reversed())
+}
+
+// MARK: - LosslessStringConvertible
+//extension LosslessStringConvertible{
 //    var palindrome: Bool{
-//        return self == String(self.reversed())
+//        let stringForm = String(self)
+//        return stringForm == String(stringForm.reversed())
 //    }
 //}
-
 
 /*:
  Test Suite
@@ -81,7 +88,7 @@ class TestSuite: XCTestCase{
         XCTAssertTrue(input.isPalindrome, "\(input) is a palindrome Int")
     }
     
-    func test_longPalindrom_Int_true() {
+    func test_longPalindrome_Int_true() {
         let input = 0000000000
         XCTAssertTrue(input.isPalindrome, "Long sequence on Zero should be a palindrome")
     }
@@ -100,6 +107,37 @@ class TestSuite: XCTestCase{
     func test_Palindrome_double_true() {
         let input = 12.21
         XCTAssertTrue(input.isPalindrome, "\(input) should be a Palindrome Double")
+    }
+    
+    func test_Palindrome_double_true_aroundPeriod() {
+        let input = 12.121
+        XCTAssertFalse(input.isPalindrome, "Even though the 12121 is a palindrome, but \(input) must be palindrome around period")
+    }
+    
+    // MARK: - Generic function test
+    func test_String() {
+        let palindromeString = "wow wow"
+        XCTAssertTrue(palindrome(input: palindromeString), "Should be a palindrome String")
+        
+        let nonPalindromeString = "nonPalindrome"
+        XCTAssertFalse(palindrome(input: nonPalindromeString), "Should not be a palindrome string")
+        
+    }
+    
+    func test_Int() {
+        let palindromeInt = 121
+        XCTAssertTrue(palindrome(input: palindromeInt), "Should be a Int Palindrome")
+        
+        let nonPalindromeInt = 100
+        XCTAssertFalse(palindrome(input: nonPalindromeInt), "Should not be a Palindrome Int")
+    }
+    
+    func test_Double() {
+        let palindromeDouble = 12.21
+        XCTAssertTrue(palindrome(input: palindromeDouble), "Should be a Double Palindrome")
+        
+        let nonPalindromeDouble = 12.121
+        XCTAssertFalse(palindrome(input: nonPalindromeDouble), "Should not be a Palindrome Double")
     }
 }
 
