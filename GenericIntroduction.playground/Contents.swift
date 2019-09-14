@@ -27,12 +27,12 @@ func palindrome<T: LosslessStringConvertible>(input: T) -> Bool{
 }
 
 // MARK: - LosslessStringConvertible
-//extension LosslessStringConvertible{
-//    var palindrome: Bool{
-//        let stringForm = String(self)
-//        return stringForm == String(stringForm.reversed())
-//    }
-//}
+extension LosslessStringConvertible{
+    var palindrome: Bool{
+        let stringForm = String(self)
+        return stringForm == String(stringForm.reversed())
+    }
+}
 
 /*:
  Test Suite
@@ -138,6 +138,27 @@ class TestSuite: XCTestCase{
         
         let nonPalindromeDouble = 12.121
         XCTAssertFalse(palindrome(input: nonPalindromeDouble), "Should not be a Palindrome Double")
+    }
+    
+    // MARK: - Through extending LosslessStringConvertible
+    func test_palindrome() {
+        let palindromeString = "wow wow"
+        XCTAssertTrue(palindromeString.palindrome, "Should be a palindrome String")
+        
+        let nonPalindromeString = "nonPalindrome"
+        XCTAssertFalse(nonPalindromeString.palindrome, "Should not be a palindrome string")
+        
+        let palindromeInt = 121
+        XCTAssertTrue(palindromeInt.palindrome, "Should be a Int Palindrome")
+        
+        let nonPalindromeInt = 100
+        XCTAssertFalse(nonPalindromeInt.palindrome, "Should not be a Palindrome Int")
+        
+        let palindromeDouble = 12.21
+        XCTAssertTrue(palindromeDouble.palindrome, "Should be a Double Palindrome")
+        
+        let nonPalindromeDouble = 12.121
+        XCTAssertFalse(nonPalindromeDouble.palindrome, "Should not be a Palindrome Double")
     }
 }
 
