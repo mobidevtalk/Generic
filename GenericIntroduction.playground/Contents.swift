@@ -1,4 +1,4 @@
-//: A UIKit based Playground for presenting user interface
+//: [Swift Generic introduction talk](https://mobidevtalk.com/swift-generic-introduction/)
   
 import Foundation
 
