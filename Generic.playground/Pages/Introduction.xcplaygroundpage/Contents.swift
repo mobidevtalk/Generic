@@ -1,5 +1,7 @@
+//: [Index](Index)
+
 //: [Swift Generic introduction talk](https://mobidevtalk.com/swift-generic-introduction/)
-  
+
 import Foundation
 
 extension String{
