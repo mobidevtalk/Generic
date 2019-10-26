@@ -59,6 +59,17 @@ enum OperatingError: Error{
     case empty
 }
 
+extension OperatingError: CustomStringConvertible{
+    var description: String{
+        switch self {
+        case .outOfBound:
+            return "Oops! There is nothing to remove"
+        case .empty:
+            return "Empty Stack"
+        }
+    }
+}
+
 // MARK: - Protocol with Generic
 protocol DataOperator: CustomStringConvertible{
     associatedtype Component
@@ -68,9 +79,10 @@ protocol DataOperator: CustomStringConvertible{
     func numberOfComponent() throws -> Int
 }
 
+// MARK: - Generic Stack with Generic protocol
 struct Stack<Element>: DataOperator{
     var description: String{
-        "Stack is a linear Data structure. Follows the LIFO(Last In First Out) pattarns. Only one tracker called Top."
+        "Stack is a linear Data structure. Follows the LIFO(Last In First Out) patterns. Only one tracker called Top."
     }
     
     private var items = [Element]()
@@ -113,7 +125,7 @@ stack.description
 do {
     try stack.numberOfComponent()
 } catch OperatingError.empty {
-    "Empty Stack"
+    OperatingError.empty.description
 }
 
 stack.insert(item: 10)
@@ -123,6 +135,6 @@ for _ in 1..<4 {
     do {
         try stack.remove()
     } catch OperatingError.outOfBound {
-        "Oops There is nothing to remove"
+        OperatingError.outOfBound.description
     }
 }
