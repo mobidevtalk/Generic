@@ -138,3 +138,66 @@ for _ in 1..<4 {
         OperatingError.outOfBound.description
     }
 }
+
+// MARK: - Generic Queue with Generic protocol
+struct Queue<Element>: DataOperator{
+    var description: String{
+        "Queue is a linear Data structure. Follows the FIFO(First In First Out) patterns. Uses two tracker. Font for insertion. Rear for deletion"
+    }
+    
+    private var items = [Element]()
+    
+    private mutating func enqueue(item: Element){
+        items.append(item)
+    }
+    
+    private mutating func dequeue() -> Element{
+        return items.removeFirst()
+    }
+    
+    typealias Component = Element
+    
+    mutating func insert(item: Element) {
+        enqueue(item: item)
+    }
+    
+    mutating func remove() throws -> Element {
+        if items.count == 0 {
+            throw OperatingError.outOfBound
+        }else{
+            return dequeue()
+        }
+    }
+    
+    func numberOfComponent() throws -> Int {
+        let count = items.count
+        if count == 0 {
+            throw OperatingError.empty
+        }else{
+            return count
+        }
+    }
+}
+
+var queue = Queue<String>()
+queue.description
+
+do {
+    try queue.numberOfComponent()
+} catch OperatingError.empty {
+    OperatingError.empty.description
+}
+
+queue.insert(item: "mobidevtalk")
+queue.insert(item: ".com")
+
+for _ in 1..<4 {
+    do {
+        try queue.remove()
+    } catch OperatingError.outOfBound {
+        OperatingError.outOfBound.description
+    }
+}
+
+//let operators: [DataOperator]
+
