@@ -1,5 +1,7 @@
 //: [Index](Index)
 
+//: [Swift Generic & Protocol](https://mobidevtalk.com/swift-generic-protocol/)
+
 import Foundation
 
 // MARK: - Generic Stack
@@ -198,6 +200,4 @@ for _ in 1..<4 {
         OperatingError.outOfBound.description
     }
 }
-
-//let operators: [DataOperator]
 
