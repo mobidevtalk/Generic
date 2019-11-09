@@ -4,5 +4,6 @@
         <page name='Index'/>
         <page name='Introduction'/>
         <page name='Protocol'/>
+        <page name='associatedtype'/>
     </pages>
 </playground>
