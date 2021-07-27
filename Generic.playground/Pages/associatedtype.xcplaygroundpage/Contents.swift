@@ -2,6 +2,7 @@
 
 import Foundation
 
+// MARK: - associatedtype
 protocol Energy{
     associatedtype EnergyBar
     
@@ -54,7 +55,7 @@ extension SunRay: CustomStringConvertible{
     }
 }
 
-
+// MARK: - Why & how confirming a protocol with associatedType turns into typealias?
 struct Popeye: Energy{
     typealias EnergyBar = Spinach
 
@@ -82,3 +83,28 @@ popeye.consume(unit: Spinach())
 
 let superMan = SuperMan()
 superMan.consume(unit: SunRay())
+
+// MARK: - Why associatedtype rather than generic type
+protocol EnergyOperator{
+    func boostEnergy<T>(unit: T)
+    func decreaseEnergy<T>(unit: T)
+}
+
+extension Popeye: EnergyOperator{
+    func boostEnergy<SpinachUnit>(unit: SpinachUnit) {
+        "Energy is now boosted by 1 Can full of Spinach it has \(unit) on per-unit"
+    }
+    
+    func decreaseEnergy<EnergyLoosingUnit>(unit: EnergyLoosingUnit) {
+        "Popeye's energy is decreased by \(unit)"
+    }
+}
+
+popeye.boostEnergy(unit: Spinach())
+popeye.decreaseEnergy(unit: "Fighting")
+
+// MARK: - Self
+
+protocol Credit{
+    func unlock(avenger credit: Credit) -> Bool
+}
