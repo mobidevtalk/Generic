@@ -1,5 +1,5 @@
 //: [Index](Index)
-
+//: [Swift Generic introduction talk](https://mobidevtalk.com/associatedtype-on-protocol/)
 import Foundation
 
 // MARK: - associatedtype
